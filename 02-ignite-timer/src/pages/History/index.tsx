@@ -19,37 +19,49 @@ export function History() {
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="red">Interrompido</Status>
+              <td>
+                <Status statusColor="red">Interrompido</Status>
+              </td>
             </tr>
             <tr>
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="red">Interrompido</Status>
+              <td>
+                <Status statusColor="red">Interrompido</Status>
+              </td>
             </tr>
             <tr>
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="yellow">Em Andamento</Status>
+              <td>
+                <Status statusColor="yellow">Em Andamento</Status>
+              </td>
             </tr>
             <tr>
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="green">Concluido</Status>
+              <td>
+                <Status statusColor="green">Concluido</Status>
+              </td>
             </tr>
             <tr>
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="green">Concluido</Status>
+              <td>
+                <Status statusColor="green">Concluido</Status>
+              </td>
             </tr>
             <tr>
               <td>Tarefa</td>
               <td>20 minutos</td>
               <td>Há 2 meses</td>
-              <Status statusColor="green">Concluido</Status>
+              <td>
+                <Status statusColor="green">Concluido</Status>
+              </td>
             </tr>
           </tbody>
         </table>
