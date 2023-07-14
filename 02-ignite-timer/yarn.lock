@@ -2995,6 +2995,11 @@
     "loose-envify" "^1.1.0"
     "scheduler" "^0.23.0"
 
+"react-hook-form@^7.45.1":
+  "integrity" "sha512-6dWoFJwycbuFfw/iKMcl+RdAOAOHDiF11KWYhNDRN/OkUt+Di5qsZHwA0OwsVnu9y135gkHpTw9DJA+WzCeR9w=="
+  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.45.1.tgz"
+  "version" "7.45.1"
+
 "react-is@^16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -3020,7 +3025,7 @@
   dependencies:
     "@remix-run/router" "1.7.1"
 
-"react@^18.2.0", "react@>= 16.8.0", "react@>=16", "react@>=16.8":
+"react@^16.8.0 || ^17 || ^18", "react@^18.2.0", "react@>= 16.8.0", "react@>=16", "react@>=16.8":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
