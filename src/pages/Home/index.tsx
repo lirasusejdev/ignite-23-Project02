@@ -13,6 +13,7 @@ import {
   MinutesAmoutInput
 } from './styles'
 import { differenceInSeconds } from 'date-fns'
+import internal from 'stream'
 /**
  *
  * function register(name: string){
@@ -67,12 +68,17 @@ export function Home() {
   const activeCycle = cycles.find(cycle => cycle.id == activeCycleId)
 
   useEffect(() => {
+    let interval: number
+
     if (activeCycle) {
-      setInterval(() => {
+      interval = setInterval(() => {
         setAmoundSecondsPassed(
           differenceInSeconds(new Date(), activeCycle.startDate)
         )
       }, 1000)
+    }
+    return () => {
+      clearInterval(interval)
     }
   }, [activeCycle])
 
@@ -85,7 +91,10 @@ export function Home() {
       startDate: new Date()
     }
 
-    setCycles(state => [...state, newCycle]), setActiveCycleId(id)
+    setCycles(state => [...state, newCycle]),
+      setActiveCycleId(id),
+      setAmoundSecondsPassed(0),
+      reset()
   }
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
