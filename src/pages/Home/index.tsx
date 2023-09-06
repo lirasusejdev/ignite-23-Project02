@@ -32,7 +32,7 @@ const newCycleFormValidationsSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod
     .number()
-    .min(5, 'O ciclo precisa ser no mínimo de 5 minutos')
+    .min(1, 'O ciclo precisa ser no mínimo de 5 minutos')
     .max(60, 'O ciclo precisa ser no máximo de 60 minutos')
 })
 
@@ -56,17 +56,16 @@ interface Cycle {
 export function Home() {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
-  const [amountSecondsPassed, setAmoundSecondsPassed] = useState(0)
+  const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
-  const { register, handleSubmit, watch, formState, reset } =
-    useForm<NewCycleFormData>({
-      resolver: zodResolver(newCycleFormValidationsSchema),
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
+    resolver: zodResolver(newCycleFormValidationsSchema),
 
-      defaultValues: {
-        task: '',
-        minutesAmount: 0
-      }
-    })
+    defaultValues: {
+      task: '',
+      minutesAmount: 0
+    }
+  })
 
   const activeCycle = cycles.find(cycle => cycle.id == activeCycleId)
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
@@ -76,25 +75,28 @@ export function Home() {
 
     if (activeCycle) {
       interval = setInterval(() => {
-        const secondsDifference = differenceInSeconds(
-          new Date(),
-          activeCycle.startDate
+        setAmountSecondsPassed(
+          differenceInSeconds(new Date(), activeCycle.startDate)
         )
-        if (secondsDifference >= totalSeconds) {
-          setCycles(state =>
-            state.map(cycle => {
-              if (cycle.id === activeCycleId) {
-                return { ...cycle, finishedDate: new Date() }
-              } else {
-                return cycle
-              }
-            })
-          )
-          setAmountSecondsPassed(totalSeconds)
-          clearInterval(interval)
-        } else {
-          setAmountSecondsPassed(secondsDifference)
-        }
+        // proposta de ciclo completo >> porem nao funciona a contagem
+        // const secondsDifference = differenceInSeconds(
+        //   new Date(),
+        //   activeCycle.startDate
+        // )
+        // if (secondsDifference >= totalSeconds) {
+        //   setCycles(state =>
+        //     state.map(cycle => {
+        //       if (cycle.id === activeCycleId) {
+        //         return { ...cycle, finishedDate: new Date() }
+        //       } else {
+        //         return cycle
+        //       }
+        //     })
+        //   )
+        //   clearInterval(interval)
+        // } else {
+        //   setAmountSecondsPassed(secondsDifference)
+        // }
       }, 1000)
     }
     return () => {
@@ -177,7 +179,7 @@ export function Home() {
             placeholder="00"
             id="minutesAmount"
             step={5}
-            min={5}
+            min={1}
             max={60}
             disabled={!!activeCycle}
             {...register('minutesAmount', { valueAsNumber: true })}
