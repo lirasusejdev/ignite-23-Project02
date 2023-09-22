@@ -15,7 +15,7 @@ export function Countdown() {
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
 
   useEffect(() => {
-    let interval: number
+    let interval: NodeJS.Timeout | null = null // Inicialize com null para evitar erros de compilação.
 
     if (activeCycle) {
       interval = setInterval(() => {
@@ -28,7 +28,9 @@ export function Countdown() {
           markCurrentCycleAsFinished()
 
           setSecondsPassed(totalSeconds)
-          clearInterval(interval)
+          if (interval !== null) {
+            clearInterval(interval)
+          }
         } else {
           setSecondsPassed(secondsDifference)
         }
@@ -36,7 +38,9 @@ export function Countdown() {
     }
 
     return () => {
-      clearInterval(interval)
+      if (interval !== null) {
+        clearInterval(interval)
+      }
     }
   }, [
     activeCycle,
